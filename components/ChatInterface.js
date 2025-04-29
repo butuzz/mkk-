@@ -64,3 +64,63 @@ async function getGPTResponse(message) {
 }
 
 export default getGPTResponse;
+import { useState } from 'react';
+
+const ChatInterface = () => {
+  const [message, setMessage] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (message.trim() === "") return;
+
+    setChatHistory([...chatHistory, { type: "user", text: message }]);
+    setMessage("");
+    
+    // Получаем ответ от GPT
+    const response = await getGPTResponse(message);
+    setChatHistory((prev) => [
+      ...prev,
+      { type: "bot", text: response },
+    ]);
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-2xl bg-white p-6 rounded-lg shadow-xl">
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-4">Chat with GPT</h1>
+        <div className="overflow-y-auto max-h-80 mb-4 p-4 bg-gray-50 rounded-lg">
+          {chatHistory.map((message, index) => (
+            <div
+              key={index}
+              className={`mb-3 ${message.type === "user" ? "text-right" : "text-left"}`}
+            >
+              <div
+                className={`inline-block p-3 rounded-lg ${
+                  message.type === "user" ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                {message.text}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type a message..."
+            className="input-field mr-3"
+          />
+          <button type="submit" className="px-6 py-2">
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default ChatInterface;
