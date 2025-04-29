@@ -1,0 +1,7 @@
+const fetchResults = async (query) => {
+  const res = await fetch(`https://api.example.com/search?q=${query}`);
+  const data = await res.json();
+  return data.results;
+};
+
+export default fetchResults;
