@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 export default function ChatInterface() {
@@ -42,3 +43,24 @@ export default function ChatInterface() {
     </div>
   );
 }
+import openai from 'openai'; // Подключи библиотеку OpenAI
+
+const openaiClient = new openai.OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // Убедись, что ты добавил ключ API в переменные окружения
+});
+
+async function getGPTResponse(message) {
+  try {
+    const completion = await openaiClient.completions.create({
+      model: "text-davinci-003", // Убедись, что используешь правильную модель
+      prompt: message,
+      max_tokens: 150,
+    });
+    return completion.choices[0].text;
+  } catch (error) {
+    console.error(error);
+    return "Error occurred.";
+  }
+}
+
+export default getGPTResponse;
