@@ -1,0 +1,14 @@
+let memoryStore: { role: string; content: string }[] = [];
+
+export function rememberMessage(role: string, content: string) {
+  memoryStore.push({ role, content });
+  if (memoryStore.length > 50) memoryStore.shift();
+}
+
+export function getMemory() {
+  return memoryStore;
+}
+
+export function clearMemory() {
+  memoryStore = [];
+}
