@@ -1,0 +1,10 @@
+export type Message = {
+  role: "user" | "assistant";
+  content: string;
+};
+
+export type BotProfile = {
+  name: string;
+  description: string;
+  systemPrompt: string;
+};
