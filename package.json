@@ -17,3 +17,6 @@
   "build": "next build && next export",
   "deploy": "gh-pages -d out"
 }
+"devDependencies": {
+  "gh-pages": "^4.0.0"
+}
