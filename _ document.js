@@ -50,3 +50,9 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
+<link rel="manifest" href="/mkk-/manifest.json" />
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/mkk-/sw.js');
+  }
+</script>
