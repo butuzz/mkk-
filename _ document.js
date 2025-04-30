@@ -56,3 +56,10 @@ export default MyDocument;
     navigator.serviceWorker.register('/mkk-/sw.js');
   }
 </script>
+  <link rel="manifest" href="/mkk-/manifest.json" />
+  <meta name="theme-color" content="#10a37f" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/mkk-/service-worker.js');
+    }
+  </script>
