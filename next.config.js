@@ -68,3 +68,11 @@ module.exports = withPWA({
     ],
   },
 });
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  // если репозиторий называется mkk-
+  basePath: process.env.NODE_ENV === 'production' ? '/mkk-' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/mkk-/' : '',
+};
+module.exports = nextConfig;
