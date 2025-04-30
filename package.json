@@ -12,3 +12,8 @@
     "react-dom": "18.2.0"
   }
 }
+"scripts": {
+  "dev": "next dev",
+  "build": "next build && next export",
+  "deploy": "gh-pages -d out"
+}
