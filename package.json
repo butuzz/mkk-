@@ -17,4 +17,3 @@
   "build": "next build && next export",
   "deploy": "gh-pages -d out"
 }
-npm install --save-dev gh-pages
